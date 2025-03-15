@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package classification;
+
+service ClassificationService {
+  rpc EvaluateClassification (EvaluationRequest) returns (EvaluationResponse);
+}
+
+message EvaluationRequest {
+  string message_history = 1;
+  string agent_output = 2;
+  string human_labeled_output = 3;
+  string categories = 4;
+}
+
+message EvaluationResponse {
+  string message = 1;
+  string agent_classification = 2;
+  string human_classification = 3;
+  int32 score = 4;
+  string reason = 5;
+}
