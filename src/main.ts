@@ -13,7 +13,7 @@ async function bootstrap() {
     options: {
       url: '0.0.0.0:50051', // gRPC server address
       package: 'classification', // Must match the package name in the .proto file
-      protoPath: join(__dirname, 'proto/classification.proto'), // Path to your .proto file
+      protoPath: join(__dirname, '../proto/classification.proto'), // Path to your .proto file
     },
   });
 
