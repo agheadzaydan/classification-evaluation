@@ -20,13 +20,13 @@ export class ClassificationService {
 
     Compare the classification based on the given evaluation criteria between triple dashes.
 
-    You should output the score for the agent’s classification, describing how well it matches the human-labeled classification, and provide reasoning for the given score.
+    You should output the score for the agents classification, describing how well it matches the human-labeled classification, and provide reasoning for the given score.
 
     Stick to the specified output format.
 
     Output a python dictionary with the following structure:
     {
-        "message": <The customer’s last message being classified>,
+        "message": <The customers last message being classified>,
         "agent_classification": <The classification assigned by the AI agent>,
         "human_classification": <The correct human-labeled classification>,
         "score": <A percentage (0-100) describing the accuracy of the classification>,
@@ -48,7 +48,7 @@ export class ClassificationService {
     `;
 
     const response = await this.openai.chat.completions.create({
-      model: 'GPT4o-mini', // or any other model you prefer
+      model: 'gpt-4o-mini', // or any other model you prefer
       messages: [{ role: 'user', content: prompt }],
     });
 
