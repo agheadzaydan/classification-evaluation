@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ChatOpenAI } from '@langchain/openai'; // Updated import
-import { HumanMessage, SystemMessage } from '@langchain/core/messages'; // Updated import
+import { ChatOpenAI } from '@langchain/openai'; 
+import { HumanMessage, SystemMessage } from '@langchain/core/messages'; 
 import { EvaluationRequest, EvaluationResponse } from '../proto/classification';
 
 @Injectable()
@@ -8,10 +8,10 @@ export class ClassificationService {
   private chatModel: ChatOpenAI;
 
   constructor() {
-    // Initialize LangChain's ChatOpenAI
+    
     this.chatModel = new ChatOpenAI({
-      openAIApiKey: process.env.OPENAI_API_KEY, // Ensure this is set in your .env file
-      modelName: 'gpt-4o-mini', // Use a valid model name
+      openAIApiKey: process.env.OPENAI_API_KEY, 
+      modelName: 'gpt-4o-mini', 
     });
   }
 
@@ -51,31 +51,31 @@ export class ClassificationService {
     `;
   
     try {
-      // Use LangChain to call the OpenAI API
+      
       const response = await this.chatModel.invoke([
         new SystemMessage('You are an assistant that evaluates how well an AI classification agent assigns customer messages to predefined categories.'), // System role for instructions
-        new HumanMessage(prompt), // User role for the actual prompt
+        new HumanMessage(prompt), 
       ]);
   
       let content: string = '';  
     if (Array.isArray(response.content)) {  
-      // Look for the first complex message that contains text  
+        
       for (const message of response.content) {  
-        if ('text' in message) { // Check if the message has a 'text' property  
+        if ('text' in message) {  
           content = message.text;  
-          break; // Stop after finding the first valid message  
+          break;  
         }  
       }  
       if (content === '') {  
         throw new Error('No valid text content found in the response');  
       }  
     } else if (typeof response.content === 'string') {  
-      content = response.content; // If it's a string, use it directly  
+      content = response.content;  
     } else {  
       throw new Error('Unexpected content format returned from OpenAI API');  
     }  
   
-      // Parse the content as JSON
+      
       const result = JSON.parse(content);
   
       return {
