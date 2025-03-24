@@ -9,9 +9,6 @@ dotenv.config();
 
 if (process.env.LANGSMITH_TRACING === 'true') {
   process.env.LANGCHAIN_TRACING = 'true';
-  process.env.LANGCHAIN_ENDPOINT = process.env.LANGSMITH_ENDPOINT;
-  process.env.LANGCHAIN_API_KEY = process.env.LANGSMITH_API_KEY;
-  process.env.LANGCHAIN_PROJECT = process.env.LANGSMITH_PROJECT;
 }
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {

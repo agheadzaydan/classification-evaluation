@@ -27,7 +27,7 @@ export class ClassificationService {
   
     Stick to the specified output format.
   
-    Output a python dictionary with the following structure:
+    Output a list of json objects with the following structure:
     {
         "message": <The customers last message being classified>,
         "agent_classification": <The classification assigned by the AI agent>,
@@ -36,18 +36,18 @@ export class ClassificationService {
         "reason": <Explanation for the assigned score based on the evaluation criteria>
     }
   
-    You are comparing based on this given data:
-    [BEGIN DATA]
-    ---
+    You are comparing based on  given data delimited by triple double quotes:
+    """
     [MESSAGE HISTORY]: ${request.messageHistory}
-    ---
+    
     [AGENT CLASSIFICATION]: ${request.agentOutput}
-    ---
+
     [HUMAN CLASSIFICATION]: ${request.humanLabeledOutput}
-    ---
+    
     [CATEGORIES]: ${request.categories}
-    ---
+    
     [END DATA]
+    """
     `;
   
     try {
